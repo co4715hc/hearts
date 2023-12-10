@@ -1,0 +1,335 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+}
+
+footer, header, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  line-height: 1;
+}
+
+/* Remove the stupid outer glow in Webkit */
+input:focus {
+  outline: 0;
+}
+
+/* Box Sizing Reset
+-----------------------------------------------*/
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type=reset],
+input[type=button],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Text Inputs
+-----------------------------------------------*/
+/* Button Controls
+-----------------------------------------------*/
+input[type=checkbox],
+input[type=radio] {
+  width: 13px;
+  height: 13px;
+}
+
+/* File Uploads
+-----------------------------------------------*/
+/* Search Input
+-----------------------------------------------*/
+/* Make webkit render the search input like a normal text field */
+input[type=search] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+}
+
+/* Turn off the recent search for webkit. It adds about 15px padding on the left */
+::-webkit-search-decoration {
+  display: none;
+}
+
+body {
+  background: royalblue;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hand {
+  position: relative;
+  display: flex;
+}
+
+.card {
+  position: relative;
+  padding: 0;
+  width: 100px;
+  justify-content: flex-start;
+}
+.card img {
+  width: 100%;
+}
+.card.selected {
+  bottom: 6px;
+}
+
+#human > .hand > .playable {
+  cursor: pointer;
+}
+
+.game-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: radial-gradient(circle, rgb(16, 145, 60) 0%, rgb(9, 88, 38) 100%);
+  width: 100%;
+  height: 100%;
+}
+
+.player-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  z-index: 3;
+}
+
+.player .hand {
+  display: flex;
+}
+.player .hand.vertical {
+  flex-direction: column;
+}
+.player .hand.horizontal {
+  flex-direction: row;
+}
+
+.player.top {
+  position: absolute;
+  top: 0;
+}
+.player.top > .player-name {
+  position: absolute;
+  transform: translateY(160px);
+}
+.player.top > .hand > .card {
+  margin-left: -80px;
+}
+.player.left {
+  position: absolute;
+  left: 0;
+}
+.player.left > .player-name {
+  position: absolute;
+  transform: translateX(160px);
+}
+.player.left > .hand {
+  transform: rotate(0deg);
+}
+.player.left > .hand > .card {
+  transform: rotate(90deg);
+  margin-top: -130px;
+}
+.player.right {
+  position: absolute;
+  right: 25px;
+}
+.player.right > .player-name {
+  position: absolute;
+  transform: translateX(-130px);
+}
+.player.right > .hand {
+  transform: rotate(0deg);
+}
+.player.right > .hand > .card {
+  transform: rotate(90deg);
+  margin-top: -130px;
+}
+.player.bottom {
+  position: absolute;
+  bottom: 0;
+}
+.player.bottom > .player-name {
+  position: absolute;
+  transform: translateY(-80px);
+}
+.player.bottom > .hand > .card {
+  margin-right: -80px;
+}
+
+.discard-pile {
+  position: relative;
+  display: flex;
+}
+.discard-pile > .top {
+  position: absolute;
+  top: -125px;
+  left: -25px;
+}
+.discard-pile > .left {
+  position: absolute;
+  top: -90px;
+  left: -75px;
+}
+.discard-pile > .right {
+  position: absolute;
+  top: -90px;
+  left: 10px;
+}
+.discard-pile > .bottom {
+  position: absolute;
+  top: -15px;
+  left: -25px;
+}
+
+.game-button-container {
+  position: absolute;
+  bottom: 35%;
+}
+.game-button-container > button {
+  padding: 12px 25px;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  z-index: 3;
+}
+.popup .popup-content {
+  align-self: center;
+  margin: auto;
+  width: 50vw;
+  height: 30vw;
+  background: #6a1e1e;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.popup .popup-content .popup-header {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.popup .popup-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+.popup .popup-content table th, .popup .popup-content table td {
+  text-align: left;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+.popup .popup-content .popup-close {
+  top: 0;
+  left: 95%;
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  background: whitesmoke;
+  padding: 6px;
+  border-radius: 4px;
+}
+.popup .popup-content > .login-input {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.popup .popup-content > .login-input > input {
+  margin: 15px auto;
+  width: 250px;
+  background: rosybrown;
+  font-size: 24px;
+}
+.popup .popup-content > .login-input .submit-button {
+  cursor: pointer;
+  margin: 0 auto;
+  background: whitesmoke;
+  font-size: 16px;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.leading {
+  color: rgb(64, 100, 170);
+}
+
+/*# sourceMappingURL=main.css.map */

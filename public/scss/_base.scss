@@ -1,0 +1,30 @@
+﻿body {
+    background: royalblue;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hand {
+    position: relative;
+    display: flex;
+}
+
+.card  {
+    position: relative;
+    padding: 0;
+    width: 100px;
+    justify-content: flex-start;
+    img {
+        width: 100%;
+    }
+
+    &.selected {
+        bottom: 6px;
+    }
+}
+
+#human > .hand >.playable {
+    cursor: pointer;
+}
+

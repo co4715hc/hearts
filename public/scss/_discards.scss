@@ -1,0 +1,24 @@
+﻿.discard-pile {
+    position: relative;
+    display: flex;
+    &>.top {
+        position: absolute;
+        top: -125px;
+        left: -25px;
+    }
+    &>.left {
+        position: absolute;
+        top: -90px;
+        left: -75px;
+    }
+    &>.right {
+        position: absolute;
+        top: -90px;
+        left: 10px;
+    }
+    &>.bottom {
+        position: absolute;
+        top: -15px;
+        left: -25px;
+    }
+}

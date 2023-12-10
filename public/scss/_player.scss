@@ -1,0 +1,59 @@
+﻿.player {
+        &.top {
+            position: absolute;
+            top: 0;
+            &>.player-name {
+                position: absolute;
+                transform: translateY(160px);
+            }
+            &>.hand {
+                &>.card {
+                    margin-left: -80px;
+                }
+            }
+        }
+        &.left {
+            position: absolute;
+            left: 0;
+            &>.player-name {
+                position: absolute;
+                transform: translateX(160px);
+            }
+            &>.hand {
+                transform: rotate(0deg);
+                &>.card {
+                    transform: rotate(90deg);
+                    margin-top: -130px;
+                }
+            }
+        }
+        &.right {
+            position: absolute;
+            right: 25px;
+            &>.player-name {
+                position: absolute;
+                transform: translateX(-130px);
+            }
+            &>.hand {
+                transform: rotate(0deg);
+                &>.card {
+                    transform: rotate(90deg);
+                    margin-top: -130px;
+                }
+            }
+        }
+
+        &.bottom {
+            position: absolute;
+            bottom: 0;
+            &>.player-name {
+                position: absolute;
+                transform: translateY(-80px);
+            }
+            &>.hand {
+                &>.card {
+                    margin-right: -80px;
+                }
+            }
+        }
+    }

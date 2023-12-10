@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Game</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main class="game-board" id="game">
+
+        <div id="computer-1" class="player left">
+            <div class="player-name">Player Left Name</div>
+            <div class="hand vertical">
+
+            </div>
+        </div>
+
+        <div id="computer-2" class="player top">
+            <div class="player-name">Player Top Name</div>
+            <div class="hand">
+
+            </div>
+        </div>
+
+        <div id="computer-3" class="player right">
+            <div class="player-name">Player Right Name</div>
+            <div class="hand vertical">
+
+            </div>
+        </div>
+
+        <div class="discard-pile" id="discards">
+            <div class="card left" id="discard-left">
+            </div>
+            <div class="card top" id="discard-top">
+            </div>
+            <div class="card right" id="discard-right">
+            </div>
+            <div class="card bottom" id="discard-bottom">
+            </div>
+        </div>
+
+        <div class="game-button-container">
+            <button id="pass-button">Pass Cards</button>
+            <button id="game-button"></button>
+        </div>
+
+        <div id="human" class="player bottom">
+            <!-- Player's hand, cards face up with functionality -->
+            <div class="player-name">Your Name</div>
+            <div class="hand horizontal">
+            </div>
+        </div>
+
+        <div class="popup" id="login-popup">
+            <div class="popup-content">
+                <div class="popup-header">Enter your name:</div>
+                <div class="login-input">
+                    <input type="text" id="login-input" aria-label="name">
+                <button id="login-button" class="submit-button">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="round-over" style="display:none">
+            <div class="popup-content">
+                <button class="popup-close">X</button>
+                <div class="popup-header">Round Over</div>
+                <table class="popup-table">
+                    <tr>
+                        <th>Ben</th>
+                        <th>Michelle</th>
+                        <th>Catherine</th>
+                        <th class="leading">Human</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>53</td>
+                        <td>105</td>
+                        <td class="leading">106</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
