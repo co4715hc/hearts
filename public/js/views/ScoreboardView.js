@@ -2,9 +2,9 @@
     constructor() {
         this.popup = $("#round-over");
 
-        this.closeButton = this.popup.find('.popup-close');
+        this.closeButton = this.popup.find('.resume-button');
         this.header = this.popup.find('.popup-header');
-        this.table = this.popup.find('.popup-table');
+        this.table = this.popup.find('.popup-results');
         this.init();
     }
 
@@ -19,29 +19,26 @@
     update(playerData, gameOver) {
         this.table.empty();
 
-        let headerRow = document.createElement('tr');
-        let valuesRow = document.createElement('tr');
-        this.table.append(headerRow);
-        this.table.append(valuesRow);
-
         const leaders = this.getLeaders(playerData);
         if (gameOver) {
             this.header.text(`Game Over! ${leaders[0]} wins!`)
+            this.closeButton.hide();
         }
 
         playerData.forEach((player) => {
-            let name = document.createElement('th');
-            if (leaders.includes(player.name)) {
-                name.classList.add('leading');
-            }
+            const column = document.createElement("div");
+            column.classList.add('popup-results-col');
+            if (leaders.includes(player.name))
+                column.classList.add('leading');
+            const name = document.createElement("div");
+            name.classList.add('popup-results-name');
             name.innerHTML = player.name;
-            headerRow.append(name);
-            let score = document.createElement('td');
-            if (leaders.includes(player.name)) {
-                score.classList.add('leading');
-            }
+            column.append(name);
+            const score = document.createElement("div");
+            score.classList.add('popup-results-score');
             score.innerHTML = player.score;
-            valuesRow.append(score);
+            column.append(score);
+            this.table.append(column);
         });
     }
 

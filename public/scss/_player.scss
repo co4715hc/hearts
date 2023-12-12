@@ -1,12 +1,17 @@
-﻿.player {
+﻿$hand-margin-side: 40px;
+$hand-margin-top: 10px;
+
+.player {
         &.top {
             position: absolute;
             top: 0;
             &>.player-name {
                 position: absolute;
-                transform: translateY(160px);
+                transform: translateY(175px) translateX(100%);
             }
             &>.hand {
+                position: relative;
+                top: $hand-margin-top;
                 &>.card {
                     margin-left: -80px;
                 }
@@ -17,10 +22,12 @@
             left: 0;
             &>.player-name {
                 position: absolute;
-                transform: translateX(160px);
+                transform: translateX(180px);
             }
             &>.hand {
                 transform: rotate(0deg);
+                position: relative;
+                left: $hand-margin-side;
                 &>.card {
                     transform: rotate(90deg);
                     margin-top: -130px;
@@ -29,13 +36,15 @@
         }
         &.right {
             position: absolute;
-            right: 25px;
+            right: 0;
             &>.player-name {
                 position: absolute;
                 transform: translateX(-130px);
             }
             &>.hand {
                 transform: rotate(0deg);
+                position: relative;
+                right: $hand-margin-side;
                 &>.card {
                     transform: rotate(90deg);
                     margin-top: -130px;
@@ -48,12 +57,25 @@
             bottom: 0;
             &>.player-name {
                 position: absolute;
-                transform: translateY(-80px);
+                transform: translateY(-60px) translateX(100%);
             }
             &>.hand {
+                position: relative;
+                bottom: $hand-margin-top;
                 &>.card {
                     margin-right: -80px;
                 }
             }
         }
     }
+
+
+.player-blocker {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 250px;
+    z-index: 100;
+}

@@ -22,4 +22,8 @@
             }
         );
     }
+
+    getUsername() {
+        return this.username;
+    }
 }

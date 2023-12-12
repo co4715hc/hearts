@@ -20,12 +20,12 @@ export default class PassView {
                 alert('You must select 3 cards to pass.');
                 return false;
             }
+            this.hide();
             document.dispatchEvent(new CustomEvent('passCards', { detail: { cardIds } }));
         });
     }
 
     update(data) {
-        this.gameButton.text("Pass Cards");
         this.playerHandElement.empty();
         data.forEach(cardHand => {
             const card = cardHand.card;

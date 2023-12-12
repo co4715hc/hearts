@@ -11,12 +11,12 @@
         for (let i = 0; i < playersData.length; i++) {
             const playerData = playersData[i];
             const discardElement = this.discards[i];
-            discardElement.empty();
+            // discardElement.empty();
             const discard = playerData.discarded;
             if (discard) {
                 const cardElement = document.createElement("div");
                 cardElement.classList.add("card");
-                cardElement.innerHTML = `<img src="images/cards/${discard.id}.svg" alt="${discard.rank} of ${discard.suit}">`
+                // cardElement.innerHTML = `<img src="images/cards/${discard.id}.svg" alt="${discard.rank} of ${discard.suit}">`
                 discardElement.append(cardElement);
             }
 

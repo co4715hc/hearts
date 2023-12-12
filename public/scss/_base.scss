@@ -1,5 +1,5 @@
 ﻿body {
-    background: royalblue;
+    background: #0f8639;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -26,5 +26,9 @@
 
 #human > .hand >.playable {
     cursor: pointer;
+}
+
+#human > .hand > .unplayable {
+    filter: brightness(0.85);
 }
 

@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    background: rgba(0, 0, 0, 0.65);
+    //background: rgba(0, 0, 0, 0.65);
     display: flex;
     align-items: center;
     align-content: center;
@@ -13,15 +13,15 @@
         margin: auto;
         width: 50vw;
         height: 30vw;
-        background: #6a1e1e;
+        background: #8e1622;
         color: white;
         border-radius: 10px;
         padding: 20px;
         box-sizing: border-box;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
 
         .popup-header {
-            font-size: 20px;
+            font-size: 28px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
@@ -57,26 +57,99 @@
             align-content: center;
 
             > input {
-                margin: 15px auto;
+                margin: 5px auto 35px;
                 width: 250px;
-                background: rosybrown;
+                background: rgba(255, 255, 255, 0.22);
                 font-size: 24px;
+                color: white;
+                padding: 15px;
+                font-family: "Open Sans", sans-serif;
 
             }
 
             .submit-button {
+                color: #5f0d16;
                 cursor: pointer;
                 margin: 0 auto;
                 background: whitesmoke;
-                font-size: 16px;
-                padding: 6px 8px;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 18px;
+                font-weight: 600;
+                width: 280px;
+                padding: 15px;
                 border-radius: 4px;
             }
         }
     }
 }
 
-.leading {
-    color: rgb(64, 100, 170);
+.popup-results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin: 65px 40px 0;
+
+    .popup-results-col {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 80px;
+
+        &.leading {
+            color: rgb(84 184 251);
+
+            .popup-results-name {
+            border-bottom: 2px solid rgb(84 184 251);
+
+            }
+        }
+
+        .popup-results-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid white;
+        }
+
+        .popup-results-score {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    }
 }
 
+
+.game-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin: 50px 0 55px;
+    text-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.resume-button {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    background: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    color: #5f0d16;
+    font-size: 18px;
+    font-weight: 600;
+    width: 280px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+
+    .popup-header-round {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 35px 0 20px;
+    }

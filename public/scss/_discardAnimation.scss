@@ -1,0 +1,130 @@
+﻿
+$xTranslate: 40vw;
+$yTranslate: 40vh;
+$duration: .8s;
+
+@keyframes discardAnimationFromLeft {
+    0% {
+        transform: translateX(-$xTranslate);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes discardAnimationFromTop {
+    0% {
+        transform: translateY(-$yTranslate);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes discardAnimationFromRight {
+    0% {
+        transform: translateX($xTranslate);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes discardAnimationFromBottom {
+    0% {
+        transform: translateY($yTranslate);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.discard-pile {
+    &>.left > .card{
+        animation: discardAnimationFromLeft;
+    }
+    &>.top > .card {
+        animation: discardAnimationFromTop
+    }
+    &>.right > .card {
+        animation: discardAnimationFromRight
+    }
+    &>.bottom > .card {
+        animation: discardAnimationFromBottom
+    }
+
+    &>.left > .card, &>.top > .card, &>.right > .card, &>.bottom > .card {
+        animation-duration: .5s;
+        animation-timing-function: ease-out;
+    }
+}
+
+@keyframes endTrickAnimationToLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-$xTranslate);
+        opacity: 0;
+    }
+}
+
+@keyframes endTrickAnimationToTop {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-$yTranslate);
+        opacity: 0;
+    }
+}
+
+@keyframes endTrickAnimationToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX($xTranslate);
+        opacity: 0;
+    }
+}
+
+@keyframes endTrickAnimationToBottom {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY($yTranslate);
+        opacity: 0;
+    }
+}
+
+.end-trick-animation-left {
+    animation: endTrickAnimationToLeft $duration ease-in-out;
+}
+
+.end-trick-animation-top {
+    animation: endTrickAnimationToTop $duration ease-in-out;
+}
+
+.end-trick-animation-right {
+    animation: endTrickAnimationToRight $duration ease-in-out;
+}
+
+.end-trick-animation-bottom {
+    animation: endTrickAnimationToBottom $duration ease-in-out;
+}
+
+

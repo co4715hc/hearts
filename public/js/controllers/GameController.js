@@ -1,20 +1,23 @@
 ﻿export default class GameController {
-    constructor(gameModel, gameView, startView, passView, trickView, discardView, computerHanDView, scoreboardView) {
+    constructor(gameModel, passView, trickView, discardView, computerHanDView, scoreboardView,
+                eventQueueController) {
         this.gameModel = gameModel;
-        this.gameView = gameView;
-        this.startView = startView;
         this.passView = passView;
         this.trickView = trickView;
         this.discardView = discardView;
         this.computerHandView = computerHanDView;
         this.scoreboardView = scoreboardView;
+        this.eventQueueController = eventQueueController;
+        this.clickBlocker = $("#click-blocker");
         this.init();
     }
 
     init() {
         this.passView.hide();
         this.trickView.hide();
+        this.enableClicks();
         this.initEventListeners();
+        this.startGame()
     }
 
     initEventListeners() {
@@ -23,8 +26,8 @@
         document.addEventListener('playCard', (event) => this.playCard(event["detail"]));
     }
 
-    startGame($playerId) {
-        console.log("Starting game", $playerId);
+    startGame() {
+        console.log("Starting game");
         this.gameModel.startGame()
             .done(response => {
                 if (response) {
@@ -34,7 +37,7 @@
     }
 
     passCards(cards) {
-        console.log("Passing cards", cards);
+        this.disableClicks();
         this.gameModel.passCards(cards['cardIds'])
             .done(response => {
                 console.log("Passing cards response", response)
@@ -45,7 +48,7 @@
     }
 
     playCard(card) {
-        console.log("Playing card", card);
+        this.disableClicks();
         this.gameModel.playCard(card)
             .done(response => {
                 console.log("Playing card response", response)
@@ -56,23 +59,18 @@
     }
 
     handleResponse(response) {
-        console.log("Handling response", response);
-        this.updateState(response.data);
         if (response.state === "passing")
-            this.updatePassingState(response.data);
+            this.eventQueueController.update(response.data.history, () => this.updatePassingState(response.data));
         else if (response.state === "trick")
-            this.updateTrickState(response.data);
+            this.eventQueueController.update(response.data.history, () => this.updateTrickState(response.data));
         else if (response.state === "end")
             this.updateEndState(response.data);
         else
             console.error("Unknown game state", response.state);
     }
-    updateState(data) {
-        // this.gameView.show();
-    }
-
     updatePassingState(data) {
-        this.startView.hide();
+        this.enableClicks();
+
         if (data.roundChanged) {
             this.scoreboardView.update(data.playersData);
             this.scoreboardView.show();
@@ -84,7 +82,8 @@
     }
 
     updateTrickState(data) {
-        this.startView.hide();
+        this.enableClicks();
+
         if (data.roundChanged) {
             this.scoreboardView.update(data.playersData);
             this.scoreboardView.show();
@@ -98,9 +97,16 @@
 
     updateEndState(data) {
         this.passView.hide();
-        this.startView.hide();
         this.scoreboardView.update(data.playersData, true);
         this.trickView.update(data.cardHands);
         this.scoreboardView.show();
+    }
+
+    enableClicks() {
+        this.clickBlocker.hide();
+    }
+
+    disableClicks() {
+        this.clickBlocker.show();
     }
 }

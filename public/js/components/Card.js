@@ -19,6 +19,9 @@
             });
             card.classList.add("playable");
         }
+        else {
+            card.classList.add("unplayable");
+        }
         return card;
     }
 

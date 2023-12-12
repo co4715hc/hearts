@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Card Game</title>
+    <title>Hearts.PHP</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
     <main class="game-board" id="game">
 
         <div id="computer-1" class="player left">
+            <!-- Vertical cards for left computer player -->
             <div class="player-name"></div>
             <div class="hand vertical">
 
@@ -16,6 +18,7 @@
         </div>
 
         <div id="computer-2" class="player top">
+            <!-- Horizontal cards for top computer player -->
             <div class="player-name"></div>
             <div class="hand">
 
@@ -41,11 +44,12 @@
         </div>
 
         <div class="game-button-container">
-            <button id="pass-button">Pass Cards</button>
+            <button id="pass-button">Pass 3 Cards</button>
             <button id="game-button"></button>
         </div>
 
         <div id="human" class="player bottom">
+            <div class="player-blocker" id="click-blocker"></div>
             <div class="player-name"></div>
             <div class="hand horizontal">
             </div>
@@ -53,19 +57,36 @@
 
         <div class="popup" id="login-popup">
             <div class="popup-content">
+                <div class="game-title">Hearts.PHP</div>
                 <div class="popup-header">Enter your name:</div>
                 <div class="login-input">
-                    <input type="text" id="login-input" aria-label="name">
-                <button id="login-button" class="submit-button">Submit</button>
+                    <input type="text" id="login-input" aria-label="name" autocomplete="off">
+                <button id="login-button" class="submit-button">Start Game</button>
                 </div>
             </div>
         </div>
         <div class="popup" id="round-over" style="display:none">
             <div class="popup-content">
-                <button class="popup-close">X</button>
-                <div class="popup-header">Round Over</div>
-                <table class="popup-table">
-                </table>
+                <div class="popup-header-round">Round Over</div>
+                <div class="popup-results">
+                    <div class="popup-results-col leading">
+                        <div class="popup-results-name">Pauline</div>
+                        <div class="popup-results-score">0</div>
+                    </div>
+                    <div class="popup-results-col">
+                        <div class="popup-results-name">Michele</div>
+                        <div class="popup-results-score">12</div>
+                    </div>
+                    <div class="popup-results-col">
+                        <div class="popup-results-name">Ben</div>
+                        <div class="popup-results-score">25</div>
+                    </div>
+                    <div class="popup-results-col">
+                        <div class="popup-results-name">Human</div>
+                        <div class="popup-results-score">2</div>
+                    </div>
+                </div>
+                <button class="resume-button">Continue Game</button>
             </div>
         </div>
     </main>

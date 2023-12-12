@@ -1,0 +1,69 @@
+﻿<html lang="en">
+<head>
+    <title>Hearts.PHP</title>
+    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+</head>
+<body>
+    <main>
+        <div class="splash-title">
+            Hearts.PHP
+        </div>
+        <div class="launch">
+            <button id="launch-button">Open App</button>
+        </div>
+        <div class="directions">
+            <div class="directions-header">
+                Directions and Rules
+            </div>
+            <section class="directions-section">
+                <div class="directions-title">
+                    Goal
+                </div>
+                <div class="directions-content">
+                    <p>Avoid receiving the queen of spades and any hearts cards.</p>
+                    <p>Have the lowest score at the end of the game.</p>
+                </div>
+            </section>
+            <section class="directions-section">
+                <div class="directions-title">
+                    Phases
+                </div>
+                <div class="directions-content">
+                    <p>Pass: At the start of each round, you must choose three cards to pass to another player. Every fourth round there will be no passing.</p>
+                    <p>Trick: During the trick phase, you must choose a valid card to discard every turn.</p>
+                </div>
+            </section>
+
+            <section class="directions-section">
+                <div class="directions-title">
+                    Rules
+                </div>
+                <div class="directions-content">
+                    <p>The player with the two of clubs must begin each round with that card.</p>
+                    <p>You cannot play a queen of spades or a hearts card on the first trick of a round.</p>
+                    <p>You must match the leading card's suit if you have a matching card.</p>
+                    <p>If you don't have a matching card, you can play any card.</p>
+                    <p>The player with the highest value card of the leading suit takes the trick.</p>
+                    <p>Shooting the moon: If one player has all 13 hearts and the queen of spades at the end of a round, they add 0 points to their score and each other player receives 26.</p>
+                </div>
+            </section>
+
+            <section class="directions-section">
+                <div class="directions-title">
+                    Points
+                </div>
+                <div class="directions-content">
+                    <p>Every hearts card is worth 1 point.</p>
+                    <p>Every queen of spades is worth 13 points.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+<script>
+    document.getElementById("launch-button").addEventListener("click", function() {
+        window.location.href = "public/index.html";
+    });
+</script>
+</body>
+</html>

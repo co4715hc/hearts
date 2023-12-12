@@ -4,6 +4,7 @@ export default class TrickView {
     constructor() {
         this.playerElement = $('#human');
         this.playerHandElement = this.playerElement.find('.hand');
+        this.playerDiscardElement = $('#discard-bottom');
         this.init();
     }
 
@@ -29,7 +30,15 @@ export default class TrickView {
     }
 
     playCard(card) {
+        for (const cardElement of this.playerHandElement.children()) {
+            if (cardElement.id === card.id) {
+                cardElement.remove();
+                break;
+            }
+        }
+        document.dispatchEvent(new CustomEvent('discardCard', { detail: card }));
         document.dispatchEvent(new CustomEvent('playCard', { detail: card.id }));
+
     }
 
     show() {

@@ -4,17 +4,20 @@ namespace App\Listeners\PassingPhase;
 
 use App\Events\PassingPhase\HumanPassInputEvent;
 use App\Services\GameService;
+use App\Services\HumanService;
 
 class HumanPassInputListener
 {
     protected $gameService;
+    protected $humanService;
 
     /**
      * Create the event listener.
      */
-    public function __construct(GameService $gameService)
+    public function __construct(GameService $gameService, HumanService $humanService)
     {
         $this->gameService = $gameService;
+        $this->humanService = $humanService;
     }
 
     /**
@@ -24,53 +27,20 @@ class HumanPassInputListener
     {
         $round = $event->round;
         $player = $event->player;
+
         $game = $round->game;
         $hand = $player->hands()->where('round_id', $round->id)->first();
-        $cardHands = $hand->cardHands()->whereNull('from_hand_id')->with('card')->get();
-        $gameId = $game->id;
-        $playerId = $player->id;
+
         $roundId = $round->id;
-        $handId = $hand->id;
-        $trickId = null;
-
-        $hasRoundChanged = false;
         $previousRound = $_SESSION["gameState"]["roundId"] ?? null;
-        if ($round->roundNumber() > 1)
-            $hasRoundChanged = $previousRound != $roundId;
 
-        $cardHands = $cardHands->sortBy(function ($cardHand) {
-            $suitOrder = ['clubs', 'diamonds', 'spades', 'hearts'];
-            $suit = $cardHand->card->suit;
-            $suitIndex = array_search($suit, $suitOrder) + 1;
-            $value = $cardHand->card->value;
-            return ($suitIndex * 53 + $value);
-        })->values();
+        $hasRoundChanged = $this->humanService->hasRoundChanged($round);
+        $cardHands = $this->humanService->getPlayerCardHandsPass($hand);
 
-        $gameState = [
-            'gameId' => $gameId,
-            'userId' => $player->player()->first()->id,
-            'playerId' => $playerId,
-            'roundId' => $roundId,
-            'handId' => $handId,
-            'trickId' => $trickId,
-        ];
+        $this->humanService->updateGameStatePass($round, $player, $hand);
+        $playersData = $this->humanService->getPlayerDataPass($game);
 
-        $_SESSION["gameState"] = $gameState;
-
-
-        $players = $game->gamePlayers()->with('player')->get();
-        $scores = $this->gameService->calculateGameScores($game)->toArray();
-        $playersData = $players->map(function ($gamePlayer) use ($scores) {
-            $score = $scores[$gamePlayer->id];
-                return [
-                    'id' => $gamePlayer->id,
-                    'name' => $gamePlayer->player->name,
-                    'isHuman' => $gamePlayer->is_human ? true : false,
-                    'discarded' => null,
-                    'handCount' => 13,
-                    'score' => $score
-                ];
-            })->toArray();
+        $history = $this->humanService->getRecentDiscardsPass($round);
 
         $_SESSION["state"] = "passing";
         $_SESSION["data"] = [
@@ -81,7 +51,8 @@ class HumanPassInputListener
             'cardHands' => $cardHands->toArray(),
             'playersData' => $playersData,
             'roundChanged' => $hasRoundChanged ? true : false,
-            'roundData' => [$previousRound, $roundId]
+            'roundData' => [$previousRound, $roundId],
+            'history' => $history
         ];
     }
 }

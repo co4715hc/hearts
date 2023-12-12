@@ -4,7 +4,7 @@
         this.isBusy = false;
     }
 
-    startGame(playerId) {
+    startGame() {
         console.log("Starting game request");
         if (this.isBusy)
             return $.Deferred().reject("Request is busy").promise();

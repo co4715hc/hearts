@@ -7,8 +7,8 @@ constructor(userModel, loginView, callback) {
     }
 
     init() {
-        console.log("Trying to get ID");
-        this.tryGettingId();
+        // console.log("Trying to get ID");
+        // this.tryGettingId();
         this.initEventListeners();
     }
 

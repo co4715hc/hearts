@@ -20,7 +20,7 @@ $app->instance('request', $request);
 $kernel->bootstrap();
 
 // Get post data
-$playerId = $_POST['playerId'];
+$playerId = $_POST['playerId'] ?? 5;
 
 // Run game until first player input is required
 event(new StartGameEvent($playerId));

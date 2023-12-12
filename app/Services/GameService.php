@@ -53,7 +53,7 @@ class GameService
     {
         foreach ($scores as $score)
         {
-            if ($score >= 10)
+            if ($score >= 100)
                 return true;
         }
         return false;
